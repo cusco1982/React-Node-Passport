@@ -1,22 +1,36 @@
 import React, { Component } from "react";
 import Card from "../components/Card";
-import video from "../images/video.mp4";
 
 
-const API = {
-  getAppart: () => {
-    return ([{
-      image: "https://via.placeholder.com/150",
-      title: "Whatever Property"
-    }])
-  }
-}
+
+// const API = {
+//   getAppart: () => {
+//     return ([{
+//       image: "https://via.placeholder.com/150",
+//       title: "Whatever Property"
+//     }])
+//   }
+// }
 
 
-class Main extends Component {
+class Tenants extends React.Component() {
+
   state = {
-    appartments: []
-  };
+    email: '',
+    pass: ''
+  }
+
+  onSubmit = () => {
+    const email = this.state.email;
+    const pass = this.state.pass;
+    API.login({ email: email, pass: pass })
+  }
+
+  render() {
+    return (
+      <Login onChange={this.onChange} onSubmit={this.onSubmit} />
+    )
+  }
 
   componentDidMount() {
     this.loadAppart();
@@ -38,7 +52,7 @@ class Main extends Component {
     return (
       <div class="container-fluid">
         <video autoPlay muted loop id="myVideo">
-          <source src={video} type="video/mp4" />
+          <source src={image} type="video/mp4" />
         </video>
 
         <div class="row animated fadeInDown delay-1s">
