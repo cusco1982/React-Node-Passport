@@ -1,24 +1,15 @@
 import React, { Component } from "react";
-import Card from "../components/Card";
+import Login from "../components/Login";
+import API from "../utils/API"
 
 
 
-// const API = {
-//   getAppart: () => {
-//     return ([{
-//       image: "https://via.placeholder.com/150",
-//       title: "Whatever Property"
-//     }])
-//   }
-// }
-
-
-class Tenants extends React.Component() {
+class Tenants extends Component {
 
   state = {
     email: '',
     pass: ''
-  }
+  };
 
   onSubmit = () => {
     const email = this.state.email;
@@ -26,57 +17,26 @@ class Tenants extends React.Component() {
     API.login({ email: email, pass: pass })
   }
 
+
   render() {
     return (
-      <Login onChange={this.onChange} onSubmit={this.onSubmit} />
-    )
-  }
-
-  componentDidMount() {
-    this.loadAppart();
-  }
-
-  loadAppart = () => {
-    // API.getAppart()
-    // .then(res =>
-    //   this.setState({ appartments: res.data })
-    // )
-    // .catch(err => console.log(err));
-
-    const appartments = API.getAppart()
-
-    this.setState({ appartments: appartments })
-
-  };
-  render() {
-    return (
-      <div class="container-fluid">
-        <video autoPlay muted loop id="myVideo">
-          <source src={image} type="video/mp4" />
-        </video>
-
-        <div class="row animated fadeInDown delay-1s">
-          <div class="col-md-12 search">
-            <h1 class="htitle">Welcome to Advanced Property Management</h1>
+      <div class="container-fluid imgcont">
+        <div class="row justify-content-center">
+          <div class="col-md-4 col3 animated fadeInUp slow delay">
+            <div class="jumbotron tent">
+              <h2>Online Portal</h2>
+              <h4>Pay rent, submit maintenance requests, and view your account from anywhere.</h4>
+            </div>
           </div>
-        </div>
-        <div className="content">
 
-          <div className="row justify-content-center">
-            <div className="container-fluid">
-              <h3 className="hed3">Featured properties</h3>
-              {this.state.appartments.map(appartment => {
-                return <Card image={appartment.image} title={appartment.title} openModal={this.openModal} />
-              })}
-
+          <div class="col-md-4 col3 animated fadeInUp slow delay">
+            <div class="jumbotron tent1">
+              <Login onChange={this.onChange} onClick={this.onSubmit} />
             </div>
           </div>
         </div>
       </div>
-
-
-
-    );
+    )
   }
 }
-export default Main;
+  export default Tenants;
