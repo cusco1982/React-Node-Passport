@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "./pages/Main";
 import Properties from "./pages/Properties";
 import Tenants from "./pages/Tenants";
+import Contacts from "./pages/Contacts";
+
+
 import "./css/style.css"
 
 
@@ -18,8 +21,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/properties" component={Properties} />
-          <Route exact path="/tenants" component={Tenants} />
-        
+          <Route exact path="/Tenants" component={Tenants} />
+          <Route exact path="/Contact" component={Contacts} />
         </Switch>
         </div>
       </div>
