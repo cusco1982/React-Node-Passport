@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 
 const ticketSchema = new Schema({
+  firstName:  { type: String, required: true },
   phone: { type: String, required: true },
   body: { type: String, required: true },
-
   date: { type: Date, default: Date.now }
 });
 
