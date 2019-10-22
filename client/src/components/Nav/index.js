@@ -28,9 +28,9 @@ function Nav() {
       <Link className="nav-link" to="/properties">PROPERTIES</Link>
     </li>
 
-    <li className="nav-item">
+    {/* <li className="nav-item">
       <Link className="nav-link" to="/tenants">TENANTS</Link>
-    </li>
+    </li> */}
 
     <li className="nav-item">
       <Link className="nav-link" to="/contact">CONTACT</Link>
