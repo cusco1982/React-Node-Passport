@@ -19,7 +19,7 @@ function Contact(props) {
       <input className="form-control input" type="text" name="name" id="lname" placeholder=" Last Name.." required onChange={props.onChange} />
     </div>
   
-  </div>
+  </div><br/>
           
   <div className="row">
     <div className="col-md">
@@ -32,11 +32,11 @@ function Contact(props) {
       <input className="form-control input" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                         placeholder="XXX-XXX-XXXX" required onChange={props.onChange}/>
     </div>
-  </div>
+  </div><br/>
 
     <label class="lable1">Message:</label>
     <textarea class="form-control text" name="message" id="message" rows="3" cols="128" placeholder=" Tell me what you need"
-        required></textarea>
+        required></textarea><br/><br/>
 
     <button id="sendmail" class="btn btn-primary btn-lg btn-block" onClick={props.onSubmit}>Submit</button>
 

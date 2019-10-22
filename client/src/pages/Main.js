@@ -36,14 +36,14 @@ class Main extends Component {
   };
   render() {
     return (
-      <div class="container-fluid">
+      <div className="container-fluid">
         <video autoPlay muted loop id="myVideo">
           <source src={video} type="video/mp4" />
         </video>
 
-        <div class="row animated fadeInDown delay-1s">
-          <div class="col-md-12 search">
-            <h1 class="htitle">Welcome to Advanced Property Management</h1>
+        <div className="row animated fadeInDown delay-1s">
+          <div className="col-md-12 search">
+            <h1 className="htitle">Welcome to Advanced Property Management</h1>
           </div>
         </div>
         <div className="content">

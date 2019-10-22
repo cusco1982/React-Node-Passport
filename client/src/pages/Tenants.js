@@ -20,17 +20,17 @@ class Tenants extends Component {
 
   render() {
     return (
-      <div class="container-fluid imgcont">
-        <div class="row justify-content-center">
-          <div class="col-md-4 col3 animated fadeInUp slow delay">
-            <div class="jumbotron tent">
+      <div className="container-fluid imgcont">
+        <div className="row justify-content-center">
+          <div className="col-md-4 col3 animated fadeInUp slow delay">
+            <div className="jumbotron tent">
               <h2>Online Portal</h2>
               <h4>Pay rent, submit maintenance requests, and view your account from anywhere.</h4>
             </div>
           </div>
 
-          <div class="col-md-4 col3 animated fadeInUp slow delay">
-            <div class="jumbotron tent1">
+          <div className="col-md-4 col3 animated fadeInUp slow delay">
+            <div className="jumbotron tent1">
               <Login onChange={this.onChange} onClick={this.onSubmit} />
             </div>
           </div>

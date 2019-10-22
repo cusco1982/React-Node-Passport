@@ -36,7 +36,7 @@ class Properties extends Component {
   };
   render() {
     return (
-      <div class="container-fluid">
+      <div className="container-fluid">
           <div className="row justify-content-center">
               {this.state.appartments.map(appartment => {
                 return <Card image={appartment.image} title={appartment.title} openModal={this.openModal} />
