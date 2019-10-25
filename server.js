@@ -20,22 +20,22 @@ if (process.env.NODE_ENV === "production") {
 // ----------------------------------------------------------------------------------------------------------------
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-const stripe = require('stripe')(process.env.STRIPE_SECRET);
+// const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
-(async () => {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [{
-      name: 'Rent',
-      description: 'Monthly Rent',
-      amount: 1500,
-      currency: 'usd',
-      quantity: 1,
-    }],
-    success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
-    cancel_url: 'https://example.com/cancel',
-  });
-})();
+// (async () => {
+//   const session = await stripe.checkout.sessions.create({
+//     payment_method_types: ['card'],
+//     line_items: [{
+//       name: 'Rent',
+//       description: 'Monthly Rent',
+//       amount: 1500,
+//       currency: 'usd',
+//       quantity: 1,
+//     }],
+//     success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+//     cancel_url: 'https://example.com/cancel',
+//   });
+// })();
 // ----------------------------------------------------------------------------------------------------------------
 
 
