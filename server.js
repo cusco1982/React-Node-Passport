@@ -2,8 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 // const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT //||8080;
 require('dotenv').config();
+const passport = require('passport')
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +23,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/propmanagedb", 
   .catch(err => console.log(err));
 
 // Start the API server
-app.listen(PORT, function () {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+// app.listen(PORT, function () {
+//   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+// });
