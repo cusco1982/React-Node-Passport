@@ -36,7 +36,9 @@ function Contact(props) {
 
     <label class="lable1">Message:</label>
     <textarea class="form-control text" name="message" id="message" rows="3" cols="128" placeholder=" Tell me what you need"
+
         required></textarea><br/><br/>
+
 
     <button id="sendmail" class="btn btn-primary btn-lg btn-block" onClick={props.onSubmit}>Submit</button>
 

@@ -4,7 +4,6 @@ import React from "react";
 function Login(props) {
   return (
 
-
     <div>
       <div className="loginput">
         <label for="email">Your Email Address</label>
@@ -17,9 +16,11 @@ function Login(props) {
       <br />
       <div>
         <button type="submit" className="btn btn-primary btn-lg btn-block" style={{ marginBottom: "10px" }} onClick={props.onSubmit}>Login Now</button>
+        {/* <p class="lead mt-4">
+          No Account? <a href="/register">Register</a>
+        </p> */}
       </div>
     </div>
-
 
   )
 }

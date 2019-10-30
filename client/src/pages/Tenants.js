@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Login from "../components/Login";
 import API from "../utils/API"
+import { Link } from "react-router-dom";
+
 
 
 
@@ -32,6 +34,9 @@ class Tenants extends Component {
           <div className="col-md-4 col3 animated fadeInUp slow delay">
             <div className="jumbotron tent1">
               <Login onChange={this.onChange} onClick={this.onSubmit} />
+              <p class="lead mt-4">
+          No Account? <Link className="register-link" to="/register">Register</Link>
+        </p>
             </div>
           </div>
         </div>

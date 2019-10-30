@@ -135,6 +135,7 @@ th {
 
 .nav-item {
   font-family: 'Ubuntu', sans-serif;
+  font-size: 16px;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
@@ -269,7 +270,7 @@ th {
   margin: auto;
   border: none;
   width: 80%;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -286,11 +287,9 @@ th {
   line-height: 20px;
 }
 
-/* #logoutbutton {
-  position:relative;
-  right:0;
-  bottom:0;
-} */
+.butdom {
+  margin-top: 10px;
+}
 
 @media only screen and (max-width: 450px) {
 
