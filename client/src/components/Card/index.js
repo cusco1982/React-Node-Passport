@@ -9,9 +9,9 @@ function Card(props) {
         <div className="card-body">
           <p className="card-text">{props.title}</p>
         </div>
-        <button type="button" className="btn btn-primary btn-lg btn-block" onClick={props.openModal}>Request Info</button>
+        <button type="button" className="btn btn-primary btn-lg btn-block" onClick={props.open}>Request Info</button>
       </div>
-    </div>
+     </div>
   );
 }
 export default Card;

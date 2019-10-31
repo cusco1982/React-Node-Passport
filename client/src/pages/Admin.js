@@ -1,53 +1,160 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-// import API from "../utils/API";
-
-
+import API from "../utils/API";
+import Form from "../components/Form"
+import DeleteBtn from "../components/DeleteBtn/DeleteBtn";
 
 class Admin extends Component {
 
   headers = {
-    tenant: ["First Name", "Last Name", "Address", "Phone", "Email", "Price"],
-    tickets: ["First Name", "Phone", "Message"],
-    units: ["Address", "City", "Zipcode", "State", "Rooms", "Price", "SqFt"]
+    tenant: ["First Name", "Last Name", "Address", "Phone", "Email", "Price", ""],
+    tickets: ["First Name", "Phone", "Message", ""],
+    units: ["Address", "City", "Zip", "State", "Price", "Rooms", "SqFeet", ""]
   }
 
   state = {
-    whichheader: this.headers.tenant,
-    masterdata: { firstname: "Andrew",
-                  lastname: "Wilman",
-                  address: "1215 Main Street, Linden, NJ",
-                  phone: "908-777-3434",
-                  email: "andrew@yahoo.com",
-                  price:"$1800"
-          },
+    whichheader: "tenant",
+    masterdata: [],
+    showTable: true,
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
+    price: '',
+    sqf: '',
+    rooms: '',
+    imagefile: ''
   }
-        
 
-  
+  componentDidMount() {
+    this.loadTenant();
+  }
+
+  loadTenant = () => {
+    API.getTennat()
+      .then(res => {
+        this.setState({
+          masterdata: res.data
+        })
+      }
+    )
+  }
+
+  onClickShowForm = () => {
+    this.setState({showTable: false})
+  }
+
 
   onClick = (e) => {
-    const btnname = e.target.name
+    const btnname = e.target.name;
+    if (btnname === "tickets") {
+      this.loadTicket()
+    } else if (btnname === "units") {
+      this.loadUnit()
+    } else if (btnname === "tenant") {
+      this.loadTenant()
+    }
+
     this.setState({
-      whichheader: this.headers[btnname]
+      whichheader: btnname,
+      showTable: true
+      })
+    }
+
+  loadTicket = () => {
+    API.getTicket()
+      .then(res => {
+        this.setState({
+          masterdata: res.data
+        })
+      }
+    )
+  }
+
+  renderTicketTable() {
+    console.log(this.state.masterdata)
+    return this.state.masterdata.map((alldata, key) => {
+      return (<tr>
+        <td className="td2">{alldata.firstName}</td>
+        <td className="td2">{alldata.phone}</td>
+        <td className="td2">{alldata.body}</td>
+        <td className="td3"><DeleteBtn data-id={alldata.id} onClick={() => this.deleteTennant(alldata._id)}/></td>
+        </tr>)
     })
   }
-  // Add code to get the book with an _id equal to the id in the route param
-  // e.g. http://localhost:3000/books/:id
-  // The book id for this route can be accessed using this.props.match.params.id
 
+  deleteTicket = id => {
+    API.deleteTicket(id)
+    .then(res => this.loadTicket())
+      .catch(err => console.log(err));
+  }
 
+  loadUnit = () => {
+    API.getUnit()
+      .then(res => {
+        this.setState({
+          masterdata: res.data
+        })
+      }
+    )
+  }
 
-  // componentDidMount() {
-  //   console.log(window.location.href);
-  //   const hrefSplit = window.location.href.split("/");
-  //   const id = hrefSplit[hrefSplit.length - 1];
+  renderUnitTable() {
+    console.log(this.state.masterdata)
+    return this.state.masterdata.map((alldata, key) => {
+      return (<tr>
+        <td className="td2">{alldata.address}</td>
+        <td className="td2">{alldata.city}</td>
+        <td className="td2">{alldata.zip}</td>
+        <td className="td2">{alldata.state}</td>
+        <td className="td2">{alldata.price}</td>
+        <td className="td2">{alldata.rooms}</td>
+        <td className="td2">{alldata.sqFeet}</td>
+        <td className="td3"><DeleteBtn data-id={alldata.id} onClick={() => this.deleteTennant(alldata._id)}/></td>
+        </tr>)
+    })
+  }
+  deleteUnit = id => {
+    
+    
+    API.deleteUnit(id)
+    .then(res => this.loadUnit())
+      .catch(err => console.log(err));
+  }
 
-  //   console.log(id);
+  renderTenantsTable(){
+    console.log(this.state.masterdata)
+    return this.state.masterdata.map((alldata, key) => {
+      return (<tr>
+        <td className="td2">{alldata.firstname}</td>
+        <td className="td2">{alldata.lastname}</td>
+        <td className="td2">{alldata.address}</td>
+        <td className="td2">{alldata.phone}</td>
+        <td className="td2">{alldata.email}</td>
+        <td className="td2">{alldata.price}</td>
+        <td className="td3"><DeleteBtn data-id={alldata.id} onClick={() => this.deleteTennant(alldata._id)}/></td>
+      </tr>)
+    })
+  }
 
-  //   API.getBook(id).then(response => this.setState({ book: response.data }))
-  // }
-
+  renderTable() {
+   
+    if (this.state.whichheader === "tenant") {
+      return this.renderTenantsTable();
+    } else if (this.state.whichheader === "tickets") {
+      return this.renderTicketTable();
+    } else if (this.state.whichheader === "units") {
+      return this.renderUnitTable();
+    } 
+  }
+  deleteTennant = id => {
+    
+    
+    API.deleteTenant(id)
+    .then(res => this.loadTenant())
+      .catch(err => console.log(err));
+  
+  }
+    
   render() {
     return (
 
@@ -55,46 +162,39 @@ class Admin extends Component {
         <div className="row">
           <div className="col-md-3">
             <div className="butdom">
-            <button type="button" onClick={this.onClick} name="tenant" className="btn btn-primary btn-lg btn-block">Manage Tenants</button>
-            <button type="button" onClick={this.onClick} name="units" className="btn btn-primary btn-lg btn-block">Manage Properties</button>
-            <button type="button" onClick={this.onClick} name="tickets" className="btn btn-primary btn-lg btn-block">Manage Tickets</button>
+              <button type="button" onClick={this.onClick} name="tenant" className="btn btn-primary btn-lg btn-block">Manage Tenants</button>
+              <button type="button" onClick={this.onClick} name="units" className="btn btn-primary btn-lg btn-block">Manage Properties</button>
+              <button type="button" onClick={this.onClick} name="tickets" className="btn btn-primary btn-lg btn-block">Manage Tickets</button>
+              <button type="button" onClick={this.onClickShowForm} name="create" className="btn btn-primary btn-lg btn-block">Add Unit</button>
             </div>
-            </div>
-            
+          </div>
 
-<div className="col-md-9">
-        {/* <h2>Tenants Management</h2> */}
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              {this.state.whichheader.map((columnname, key) =>
-                <th key={key}>{columnname}</th>
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {/* {this.state.masterdata.map((alldata, key)=> */}
-              <tr>
-                {/* {this.alldata.map((anytd, key) =>
-                  <td key={key}>{anytd}</td>
-                )} */}
+          <div className="col-md-9">
+          {this.state.showTable ?  
+            <table className="table table-striped tbls">
+              <thead>
+                <tr>
+                  {this.headers[this.state.whichheader].map((columnname, key) =>
+                    <th key={key}>{columnname}</th>
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderTable()}
+              </tbody>
+            </table>
+          
+        : <Form/>
+                  }
 
-                <td>Andrew</td>
-                <td>Wallas</td>
-                <td>1215 Main Street, Linden, NJ</td>
-                <td>908-333-4444</td>
-                <td>andrew@email.com</td>
-                <td>$1800</td>
-              </tr>
-            {/* )} */}
-        </tbody>
-        </table>
-      </div>
-      </div>
-      </div>
-    );
-  }
-}
-
-export default Admin;
+        
+        </div>
+        </div>
+        </div>
+        
+        );
+      }
+    }
+    
+    export default Admin;

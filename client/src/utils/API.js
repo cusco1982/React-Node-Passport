@@ -9,12 +9,29 @@ export default {
   contact: function(id) {
     return axios.get("/api/contact/" + id);
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
-  },
+  
   // Saves a book to the database
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
-  }
+  },
+  getTennat: function() {
+    return axios.get("/api/tenants/");
+  },
+  getTicket: function() {
+    return axios.get("/api/tickets/");
+  },
+  getUnit: function() {
+    return axios.get("/api/Units/");
+  },
+  deleteTenant: function(id) {
+    return axios.delete("/api/tenants/" + id);
+  },
+  deleteTicket: function(id) {
+    return axios.delete("/api/tickets/" + id);
+  },
+  deleteUnit: function(id) {
+    return axios.delete("/api/Units/" + id);
+  },
+
+
 };

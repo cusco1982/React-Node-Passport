@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const tenantSchema = new Schema({
   address: { type: String, required: true },
   price: { type: String, required: true },
-  fristname: { type: String, required: true },
+  firstname: { type: String, required: true },
   lastname: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },

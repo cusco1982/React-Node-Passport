@@ -29,11 +29,24 @@ a:active {
   white-space: nowrap;
   
 }
-
+.fromup {
+  margin-top: 20px;
+}
 .td2 {
   font-family: 'Titillium Web', sans-serif;
   font-size: 16px;
+  padding: 8px !important;
+}
+.td3 {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 16px;
+  padding: 8px !important;
+  text-align: center;
+}
+.delete-btn {
   
+  color: #e74944;
+  font-size: 20px;
 }
 
 th {
@@ -41,6 +54,12 @@ th {
   font-size: 18px;
   font-weight: bold;
   white-space: nowrap;
+  
+}
+.tbls {
+  margin-top: 10px;
+  border: 1px solid grey;
+ 
 }
 .hed3 {
   font-family: 'Livvic', sans-serif;

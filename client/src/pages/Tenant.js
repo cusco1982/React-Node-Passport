@@ -6,40 +6,6 @@ import Modal from 'react-bootstrap/Modal'
 
 
 
-
-// state = {
-//   issueModal: false,
-//   payRentModal: false,
-
-
-// }
-
-
-
-
-// modal = (e) => {
-//   const btnname = e.target.name,
-
-//   this.setState({
-//     [btnname]: value
-//   })
-// }
-// Add code to get the book with an _id equal to the id in the route param
-// e.g. http://localhost:3000/books/:id
-// The book id for this route can be accessed using this.props.match.params.id
-
-
-
-// componentDidMount() {
-//   console.log(window.location.href);
-//   const hrefSplit = window.location.href.split("/");
-//   const id = hrefSplit[hrefSplit.length - 1];
-
-//   console.log(id);
-
-//   API.getBook(id).then(response => this.setState({ book: response.data }))
-// }
-
 class Tenant extends Component {
 state = {
   showModal: false
@@ -49,8 +15,8 @@ state = {
 open = () => {
   this.setState({ showModal: true });
 }
-close = (e) => {
-  e.preventDefault();
+close = (event) => {
+  if (event) event.preventDefault();
   this.setState({ showModal: false });
 }
   
