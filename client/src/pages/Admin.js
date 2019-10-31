@@ -77,7 +77,7 @@ class Admin extends Component {
         <td className="td2">{alldata.firstName}</td>
         <td className="td2">{alldata.phone}</td>
         <td className="td2">{alldata.body}</td>
-        <td className="td3"><DeleteBtn data-id={alldata.id} onClick={() => this.deleteTennant(alldata._id)}/></td>
+        <td className="td3"><DeleteBtn data-id={alldata.id} onClick={() => this.deleteTicket(alldata._id)}/></td>
         </tr>)
     })
   }
@@ -109,7 +109,7 @@ class Admin extends Component {
         <td className="td2">{alldata.price}</td>
         <td className="td2">{alldata.rooms}</td>
         <td className="td2">{alldata.sqFeet}</td>
-        <td className="td3"><DeleteBtn data-id={alldata.id} onClick={() => this.deleteTennant(alldata._id)}/></td>
+        <td className="td3"><DeleteBtn data-id={alldata.id} onClick={() => this.deleteUnit(alldata._id)}/></td>
         </tr>)
     })
   }
