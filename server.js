@@ -1,5 +1,4 @@
 const express = require("express");
-
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -22,22 +21,23 @@ app.use(routes);
 // ----------------------------------------------------------------------------------------------------------------
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-// const stripe = require('stripe')(process.env.STRIPE_SECRET);
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
-// (async () => {
-//   const session = await stripe.checkout.sessions.create({
-//     payment_method_types: ['card'],
-//     line_items: [{
-//       name: 'Rent',
-//       description: 'Monthly Rent',
-//       amount: 1500,
-//       currency: 'usd',
-//       quantity: 1,
-//     }],
-//     success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
-//     cancel_url: 'https://example.com/cancel',
-//   });
-// })();
+(async () => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [{
+      name: 'Rent',
+      description: 'Monthly Rent',
+      amount: 1500,
+      currency: 'usd',
+      quantity: 1,
+    }],
+    // This will require changing prior to deployment
+    success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'https://example.com/cancel',
+  });
+})();
 
 // ----------------------------------------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ app.use(routes);
 //     .then(() => console.log('MongoDB Connected...'))
 //     .catch(err => console.log(err));
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/propmanagedb");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/propmanagedb", {useNewUrlParser: true, useUnifiedTopology: true});
 
     
 // Start the API server
