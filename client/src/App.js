@@ -10,6 +10,13 @@ import Tenant from "./pages/Tenant";
 import Register from "./pages/Register";
 
 
+// import Profile from './components/Profile';
+// import Dashboard from './components/Dashboard';
+// import Login from './components/Login';
+// import Signup from './components/Signup';
+// import Home from './components/Home';
+// import NotFound from './components/NotFound';
+
 
 import "./css/style.css"
 
@@ -18,8 +25,8 @@ import "./css/style.css"
 
 export default class App extends Component {
   render () {
+    
     return(
-
     <Router>
       <div>
         <Nav />

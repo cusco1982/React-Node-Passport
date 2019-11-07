@@ -2,16 +2,17 @@ import React, { Component } from "react";
 // import Login from "../components/Login";
 // import API from "../utils/API"
 // import { Link } from "react-router-dom";
+import axios from "axios"
 
 
 
 
-class Register extends Component {
+export default class Signup extends Component {
 
-    // state = {
-    //     email: '',
-    //     pass: ''
-    // };
+    state = {
+        email: '',
+        password: ''
+    };
 
     // onSubmit = () => {
     //     const email = this.state.email;
@@ -138,8 +139,3 @@ class Register extends Component {
         )
     }
 }
-
-
-
-export default Register;
-
