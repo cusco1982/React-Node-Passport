@@ -7,11 +7,21 @@ const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3001;
 require('dotenv').config();
-const passport = require('passport')
+// const passport = require('passport')
+
+// ----------------------------------------------------------------------------------------------------------------
+const passport = require('./passport')
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
+app.use('/', indexRouter);
+app.use('/authentication', usersRouter);
+app.use(passport.initialize());
+// ----------------------------------------------------------------------------------------------------------------
 
 
 // Define middleware here
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Serve up static assets (usually on heroku)
@@ -42,3 +52,5 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/propmanagedb", 
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+module.exports = app;

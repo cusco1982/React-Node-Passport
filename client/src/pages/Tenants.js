@@ -10,11 +10,16 @@ import axios from "axios"
 export default class Tenants extends Component {
 
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     errorMessage: ""
   };
 
+  // onSubmit = () => {
+  //   const email = this.state.email;
+  //   const pass = this.state.pass;
+  //   API.login({ email: email, pass: pass })
+  // }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -47,40 +52,14 @@ export default class Tenants extends Component {
 
   render() {
     return (
-      <div className="container-fluid imgcont">
-        <div className="row justify-content-center">
-          <div className="col-md-4 col3 animated fadeInUp slow delay">
-            <div className="jumbotron tent">
-              <h2>Online Portal</h2>
-              <h4>Pay rent, submit maintenance requests, and view your account from anywhere.</h4>
-            </div>
-          </div>
-
-          <div className="col-md-4 col3 animated fadeInUp slow delay">
-            <div className="jumbotron tent1">
-              <div>
-                <div className="loginput">
-                  <label for="email">Your Email Address</label>
-                  <input className="form-control" type="email" id="email" name="email" required onChange={this.handleChange} />
-                </div>
-                <div className="loginput">
-                  <label for="password">Password</label>
-                  <input className="form-control" type="password" id="password" name="password" required onChange={this.handleChange} />
-                </div>
-                <br />
-                <div>
-                  <button type="submit" className="btn btn-primary btn-lg btn-block" style={{ marginBottom: "10px" }} >Login Now</button>
-                  {/* <p class="lead mt-4">
-          No Account? <a href="/register">Register</a>
-        </p> */}
-                </div>
-              </div>              <p class="lead mt-4">
-                No Account? <Link className="register-link" to="/register">Register</Link>
-                {this.state.errorMessage}
-              </p>
-            </div>
-          </div>
-        </div>
+      <div>
+        <h2>Login Component</h2>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="email" onChange={this.handleChange} />
+          <input type="password" name="password" onChange={this.handleChange} />
+          <button>Login</button>
+        </form>
+        <p>{this.state.errorMessage}</p>
       </div>
     )
   }
