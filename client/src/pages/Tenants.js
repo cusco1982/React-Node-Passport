@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Login from "../components/Login";
+// import Login from "../components/Login";
 import API from "../utils/API"
 import { Link } from "react-router-dom";
 import axios from "axios"
@@ -58,9 +58,25 @@ export default class Tenants extends Component {
 
           <div className="col-md-4 col3 animated fadeInUp slow delay">
             <div className="jumbotron tent1">
-              <Login onChange={this.handleChange} onSubmit={this.handleSubmit} />
-              <p class="lead mt-4">
+              <div>
+                <div className="loginput">
+                  <label for="email">Your Email Address</label>
+                  <input className="form-control" type="email" id="email" name="email" required onChange={this.handleChange} />
+                </div>
+                <div className="loginput">
+                  <label for="password">Password</label>
+                  <input className="form-control" type="password" id="password" name="password" required onChange={this.handleChange} />
+                </div>
+                <br />
+                <div>
+                  <button type="submit" className="btn btn-primary btn-lg btn-block" style={{ marginBottom: "10px" }} >Login Now</button>
+                  {/* <p class="lead mt-4">
+          No Account? <a href="/register">Register</a>
+        </p> */}
+                </div>
+              </div>              <p class="lead mt-4">
                 No Account? <Link className="register-link" to="/register">Register</Link>
+                {this.state.errorMessage}
               </p>
             </div>
           </div>
