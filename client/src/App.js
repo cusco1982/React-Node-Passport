@@ -33,7 +33,7 @@ export default class App extends Component {
 
       <Router>
         <Nav />
-        <div className="container-fluid">
+        {/* <div className="container-fluid"> */}
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/properties" component={Properties} />
@@ -43,10 +43,9 @@ export default class App extends Component {
           <Route exact path="/Tenant" component={Tenant} />
           <Route exact path="/Register" component={Register} />
         </Switch>
-        </div>
+        {/* </div> */}
       </Router>
 
     );
   };
 }
-
