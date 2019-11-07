@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Login from "../components/Login";
-import API from "../utils/API"
+// import API from "../utils/API"
 import { Link } from "react-router-dom";
 import axios from "axios"
 
@@ -29,7 +29,7 @@ export default class Tenants extends Component {
       }
     })
       .then(response => {
-        this.props.history.push('/profile')
+        this.props.history.push('/tenant')
       })
       .catch((error) => {
         this.setState({
