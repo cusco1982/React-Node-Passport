@@ -7,14 +7,25 @@ import API from "../utils/API";
 
 
 class Tenant extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showModal: false,
+      showModal1: false,
+      appartments: [],
+      catchid: "",
+      name: ""
+    }
+  // ...
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handlePhoneChange = this.handlePhoneChange.bind(this)
+    this.handleMessageChange = this.handleMessageChange.bind(this)
 
-  state = {
-    showModal: false,
-    showModal1: false,
-    appartments: [],
-    catchid: ""
   }
-
+  
+  componentDidMount = () => {
+    console.log(this.state)
+  }
 
   open = () => {
     this.setState({ showModal: true });
@@ -42,6 +53,36 @@ class Tenant extends Component {
       }
     )
   }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state)
+    const ticketData =
+    {
+      name: this.state.name,
+      phone: this.state.phone,
+      message: this.state.message,
+     
+    }
+    console.log(ticketData)
+    API.createTicket(ticketData)
+      .then(res => console.log(res))
+
+        this.setState({ showModal: false });
+  }
+  
+  handleNameChange(event) {
+    this.setState({name: event.target.value})
+    console.log(this.state)
+  } 
+  handlePhoneChange(event) {
+    this.setState({phone: event.target.value})
+    console.log(this.state)
+  } 
+  handleMessageChange(event) {
+    this.setState({message: event.target.value})
+    console.log(this.state)
+  } 
 
   render() {
     return (
@@ -103,7 +144,7 @@ class Tenant extends Component {
 <form>
   <div class="form-group">
     <label className="col-form-label">Your Name:</label>
-    <input type="text" className="form-control" placeholder="Your Name...."/>
+    <input type="text" className="form-control" placeholder="Your Name...." />
 </div>
     <div class="form-group">
       <label className="col-form-label">Your Phone:</label>
@@ -114,7 +155,7 @@ class Tenant extends Component {
         <textarea className="form-control"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="submit" className="btn btn-success submit" >Submit</button>
+        <button type="submit" className="btn btn-success submit" onClick={this.onSubmit}>Submit</button>
         <button type="close" onClick={this.close} className="btn btn-success submit" >Close</button>
       </div>
     </form>
@@ -147,19 +188,19 @@ class Tenant extends Component {
               <form>
                 <div class="form-group">
                   <label className="col-form-label">Your Name:</label>
-                  <input type="text" className="form-control" placeholder="Your Name...." />
+                  <input type="text" className="form-control" placeholder="Your Name...." name="name" value={this.state.name} onChange={this.handleNameChange}/>
                 </div>
                 <div class="form-group">
                   <label className="col-form-label">Your Phone:</label>
-                  <input type="tel" className="form-control" placeholder="XXX-XXX-XXXX" />
+                  <input type="tel" className="form-control" placeholder="XXX-XXX-XXXX"  name="phone" value={this.state.phone} onChange={this.handlePhoneChange}/>
                 </div>
                 <div className="form-group">
                   <label className="col-form-label">Please provide the details of the issue:</label>
-                  <textarea className="form-control"></textarea>
+                  <textarea className="form-control" name="message" value={this.state.message} onChange={this.handleMessageChange}></textarea>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" className="btn btn-success submit" >Submit</button>
-                  <button type="close" onClick={this.close} className="btn btn-success submit" >Close</button>
+                  <button type="submit" className="btn btn-primary btn-lg btn-block" onClick={this.onSubmit}>Submit</button>
+                  <button type="close" onClick={this.close} className="btn btn-primary btn-lg btn-block" >Close</button>
                 </div>
               </form>
             </Modal.Body>

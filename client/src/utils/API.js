@@ -21,7 +21,7 @@ export default {
     return axios.get("/api/tickets/");
   },
   getUnit: function() {
-    return axios.get("/api/Units/");
+    return axios.get("/api/units/");
   },
   deleteTenant: function(id) {
     return axios.delete("/api/tenants/" + id);
@@ -30,19 +30,20 @@ export default {
     return axios.delete("/api/tickets/" + id);
   },
   deleteUnit: function(id) {
-    return axios.delete("/api/Units/" + id);
+    return axios.delete("/api/units/" + id);
   },
   createUnit: function(unitData) {
-    return axios.post("/api/Units/", unitData);
+    return axios.post("/api/units/", unitData);
   },
-
   upload: function(formData) {
     return axios.post("/api/image-upload/", formData);
   },
-
-
   postPay: function(token) {
     return axios.post("/api/checkout/", token);
+  },
+
+  createTicket: function(ticketData) {
+    return axios.post("/api/Tickets/", ticketData);
   },
 
 

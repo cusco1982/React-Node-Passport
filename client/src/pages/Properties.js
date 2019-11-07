@@ -40,7 +40,7 @@ class Properties extends Component {
       <div className="container-fluid">
           <div className="row justify-content-center">
               {this.state.appartments.map(appartment => {console.log(appartment)
-                return <Card  image={appartment.image} 
+                return <Card   
                               id={appartment._id} 
                               address={appartment.address} 
                               city={appartment.city + ", " + appartment.state + ", " + appartment.zip} 

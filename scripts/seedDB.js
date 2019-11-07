@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+require('dotenv').config();
 
 // This file empties the Books collection and inserts the books below
-
+// console.log("ENV")
+// console.log(process.env)
 mongoose.connect(
   process.env.MONGODB_URI ||
   "mongodb://localhost/propmanagedb"

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Card from "../components/Card";
-import Modal from 'react-bootstrap/Modal';
+import CardMain from "../components/CardMain";
 import video from "../images/video.mp4";
 import image1 from '../images/1.jpg'; 
 import image2 from '../images/2.jpg';
@@ -12,16 +11,16 @@ const API = {
   getAppart: () => {
     return ([{
       image: image1,
-      title: "Whatever Property"
+      title: "New Appartment"
     },{
       image: image2,
-      title: "Whatever Property"
+      title: "New Appartment"
     },{
       image: image3,
-      title: "Whatever Property"
+      title: "New Appartment"
     },{
       image: image4,
-      title: "Whatever Property"
+      title: "New Appartment"
     }])
   }
 }
@@ -32,19 +31,18 @@ const API = {
 class Main extends Component {
   state = {
     appartments: [],
-    showModal: false
+    
   };
 
   open = () => {
-    this.setState({ showModal: true });
+    let path = `/Contact`;
+    this.props.history.push(path);
   }
+
   close = (event) => {
     if (event) event.preventDefault();
     this.setState({ showModal: false });
   }
-
-
-
 
   componentDidMount() {
     this.loadAppart();
@@ -81,58 +79,13 @@ class Main extends Component {
           <div className="row justify-content-center">
               
               {this.state.appartments.map(appartment => {
-                return <Card image={appartment.image} title={appartment.title} open={this.open} />
+                return <CardMain image={appartment.image} title={appartment.title} open={this.open} />
                 
               })}
           </div>
         </div>
       </div>
-      <Modal
-        size="lg"
-        show={this.state.showModal} onHide={this.close}
-        aria-labelledby="example-modal-sizes-title-lg">
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-          <h5>Apply for &nbsp;</h5>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <form className="myform" action="/api/tenants" method="POST">
-              <div className="row">
-                <div className="col-md">
-                  <label className="lable">Name:</label><br/>
-                  <input className="form-control input" type="text" placeholder=" First name.." required/><br/>
-                </div>
-                <div className="col-md">
-                  <label className="lable">Last Name:</label><br/>
-                  <input className="form-control input" type="text" placeholder=" Last Name.." required/><br/>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-md">
-
-                  <label className="lable1">Email:</label><br/>
-                  <input className="form-control input" type="email" placeholder=" Your@email.." required/>
-                  <br/>
-                </div>
-                <div className="col-md">
-                  <label className="lable1">Telephone:</label><br/>
-                  <input className="form-control input" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    placeholder="XXX-XXX-XXXX" required/>
-                </div>
-              </div>
-
-
-              <label className="lable1">Message:</label><br/>
-              <textarea className="form-control text" rows="3" cols="128" placeholder=" Tell me what you need" required></textarea><br/><br/>
-
-              <button className="btn btn-primary btn-lg btn-block">Submit</button><br/>
-
-            </form>
-
-        </Modal.Body>
-      </Modal>
+      
       </div>
 
 

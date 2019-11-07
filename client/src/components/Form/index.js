@@ -4,7 +4,6 @@ import React from "react";
 function Form(props) {
   return (
 
-    <form method="post" action="upload/post" enctype="multipart/form-data">
     <div className="container fromup">
       <div className="row">
      
@@ -98,7 +97,7 @@ function Form(props) {
 
         <div className="col-md-3">
           <div className="custom-file">
-            <input type="file" className="custom-file-input" name="image" required onChange={props.onChange} value={props.adminState.image}/>
+            <input type="file" className="custom-file-input" name="image" required onChange={props.onFileChange} value={props.adminState.image}/>
             <label className="custom-file-label">Choose file...</label>
           </div>
         </div>
@@ -112,7 +111,7 @@ function Form(props) {
          
       </div>
     </div>
-    </form>
+    
   )
 }
 

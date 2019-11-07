@@ -68,30 +68,30 @@ class Admin extends Component {
     });
   }
 
-  onChange = e => {
+  onFileChange = e => {
     const files = e.target.files
     this.setState({ uploading: true })
 
-    const formData = new FormData()
+    if(files && files.length > 0){
 
-      formData.append(files[0])
-
-    fetch(`api/image-upload`, {
-      method: 'POST',
-      body: formData
+      let formData = new FormData()
       
-    })
-    console.log(formData)
-    .then(res => res.json())
-    .then(image => {
-      this.setState({ 
-        uploading: false,
-        image: ""
+      formData.append("image", files[0])
+      // console.log(files[0])
+      console.log(formData.getAll("files"))
+      
+      API.saveImage(formData).then((response) => {
+        console.log(response)
+      }).then(image => {
+        this.setState({ 
+          uploading: false,
+          // image: ""
+        })
       })
-    })
-  }
-
-  onSubmit = (e) => {
+    }
+    }
+    
+    onSubmit = (e) => {
     const UnitData =
     {
       address: this.state.address,
@@ -104,7 +104,7 @@ class Admin extends Component {
       image: this.state.image
     }
 
-    console.log(UnitData)
+    
     API.createUnit(UnitData)
       .then(res => { console.log(res) })
     this.setState({
@@ -115,7 +115,7 @@ class Admin extends Component {
       price: '',
       sqf: '',
       rooms: '',
-      image: ''
+      // image: ''
     });
   }
 
@@ -133,9 +133,9 @@ class Admin extends Component {
     console.log(this.state.masterdata)
     return this.state.masterdata.map((alldata, key) => {
       return (<tr>
-        <td className="td2">{alldata.firstName}</td>
+        <td className="td2">{alldata.name}</td>
         <td className="td2">{alldata.phone}</td>
-        <td className="td2">{alldata.body}</td>
+        <td className="td2">{alldata.message}</td>
         <td className="td3"><DeleteBtn data-id={alldata.id} onClick={() => this.deleteTicket(alldata._id)} /></td>
       </tr>)
     })
@@ -246,7 +246,7 @@ class Admin extends Component {
                 </tbody>
               </table>
 
-              : <Form onChange={this.onInputChange} adminState={this.state} onSubmit={this.onSubmit} />
+              : <Form onFileChange={this.onFileChange} onChange={this.onInputChange} adminState={this.state} onSubmit={this.onSubmit} />
             }
 
 
