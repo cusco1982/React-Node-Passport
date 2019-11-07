@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import Login from "../components/Login";
 import API from "../utils/API"
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 
 
 
-class Tenants extends Component {
+export default class Tenants extends Component {
 
   state = {
     email: '',
@@ -44,4 +45,3 @@ class Tenants extends Component {
     )
   }
 }
-  export default Tenants;
