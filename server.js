@@ -4,9 +4,25 @@ const routes = require("./routes");
 const app = express();
 const bodyParser = require('body-parser');
 
+
+// ----------------------------------------------------------------------------------
+const passport = require('./passport');
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const log = console.log;
+
+
+app.use('/', indexRouter);
+app.use('/authentication', usersRouter);
+app.use(passport.initialize());
+// app.use(passport.session());
+
+// ----------------------------------------------------------------------------------
+
+
 const PORT = process.env.PORT || 3001;
 require('dotenv').config();
-const passport = require('passport')
 
 
 // Define middleware here
@@ -21,7 +37,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 // app.use('/upload', router);
 
-// ----------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 
 
 
@@ -41,3 +57,5 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/propmanagedb", 
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+module.exports = app;
