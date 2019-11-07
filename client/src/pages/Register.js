@@ -34,7 +34,7 @@ export default class Signup extends Component {
       }
     })
       .then((response) => {
-        this.props.history.push('/profile')
+        this.props.history.push('/tenant')
       })
       .catch((error) => {
         console.log('Error: ', error.response);
