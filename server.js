@@ -26,7 +26,7 @@ require('dotenv').config();
 
 
 // Define middleware here
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false })); //switchtrue?
 app.use(express.json());
 
 // Serve up static assets (usually on heroku)
