@@ -23,11 +23,20 @@ class Admin extends Component {
     sqf: '',
     rooms: '',
     uploading: false,
-    image: ''
+    image: '', 
+    user: ""
   }
 
   componentDidMount() {
     this.loadTenant();
+
+    const user = sessionStorage.getItem("user");
+    console.log("tenant", user);
+    if (user) {
+      this.setState({
+        user: JSON.parse(user)
+      })
+    }
   }
 
   loadTenant = () => {

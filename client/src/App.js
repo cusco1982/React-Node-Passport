@@ -24,24 +24,25 @@ import "./css/style.css"
 
 
 export default class App extends Component {
-  render () {
-    
-    return(
-    <Router>
-      <div>
-        <Nav />
-        <div className="container-fluid">
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/properties" component={Properties} />
-            <Route exact path="/Tenants" component={Tenants} />
-            <Route exact path="/Contact" component={Contacts} />
-            <Route exact path="/Admin" component={Admin} />
-            <Route exact path="/Tenant" component={Tenant} />
-            <Route exact path="/Register" component={Register} />
-          </Switch>
+  render() {
+
+    return (
+      <Router>
+        <div>
+          <Nav />
+          <div className="container-fluid">
+            <Switch>
+              <Route exact path="/" component={Main} />
+              <Route exact path="/properties" component={Properties} />
+              <Route exact path="/Tenants" component={Tenants} />
+              <Route exact path="/Contact" component={Contacts} />
+              <Route exact path="/Admin" component={Admin} />
+              <Route exact path="/Tenant" component={Tenant} />
+              <Route exact path="/Register" component={Register} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
-    )};
+      </Router>
+    )
+  };
 }

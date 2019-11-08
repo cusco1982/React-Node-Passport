@@ -14,7 +14,8 @@ class Tenant extends Component {
       showModal1: false,
       appartments: [],
       catchid: "",
-      name: ""
+      name: "",
+      user: ""
     }
   // ...
     this.handleNameChange = this.handleNameChange.bind(this)
@@ -25,6 +26,14 @@ class Tenant extends Component {
   
   componentDidMount = () => {
     console.log(this.state)
+    // const user = JSON.stringify(sessionStorage.getItem("user"));
+    const user = sessionStorage.getItem("user");
+    console.log("tenant", user);
+    if (user) {
+      this.setState({
+        user: JSON.parse(user)
+      })
+    }
   }
 
   open = () => {
@@ -85,6 +94,10 @@ class Tenant extends Component {
   } 
 
   render() {
+
+    const {user} = this.state;
+
+
     return (
 
       <div class="container-fluid">
@@ -110,7 +123,7 @@ class Tenant extends Component {
                 <h2>Customer Profile</h2>
                 <h5>Name: </h5>
                 <h5>Phone: </h5>
-                <h5>Email: </h5>
+                <h5>Email: {user ? user.email : "test@email.com"} </h5>
                 <h5>Rent: </h5>
                 <h5>Next Rent Due:</h5>
               </div>

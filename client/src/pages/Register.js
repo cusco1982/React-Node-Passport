@@ -9,20 +9,49 @@ import axios from "axios"
 
 export default class Signup extends Component {
 
-    state = {
-        email: '',
-        password: ''
-    };
+  state = {
+    email: '',
+    password: ''
+  };
 
-    // onSubmit = () => {
-    //     const email = this.state.email;
-    //     const pass = this.state.pass;
-    //     API.login({ email: email, pass: pass })
-    // }
+  // onSubmit = () => {
+  //     const email = this.state.email;
+  //     const pass = this.state.pass;
+  //     API.login({ email: email, pass: pass })
+  // }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    const { email, password } = this.state;
+    console.log("sending to server")
+    console.log(email, password)
+    axios({
+      url: "/authentication/signup",
+      method: "POST",
+      data: {
+        email,
+        password
+      }
+    })
+      .then((response) => {
+        this.props.history.push('/tenants')
+      })
+      .catch((error) => {
+        console.log('Error: ', error.response);
+
+      });
+  }
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
 
-    render() {
-        return (
+  render() {
+    return (
     <div className="container-fluid imgcont1">
       <div className="row mt-5">
         <div className="col-md-6 m-auto">
@@ -31,7 +60,7 @@ export default class Signup extends Component {
               <i className="fas fa-user-plus"></i> Register
             </h1>
             {/* <% include ./partials/messages %> */}
-          <form action="/users/register" method="POST">
+          <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="col-md">
                 <div className="form-group">
@@ -69,6 +98,7 @@ export default class Signup extends Component {
                     name="email"
                     className="form-control input"
                     placeholder="Enter Email"
+                    onChange={this.handleChange}
                     />
                 </div>
 
@@ -98,6 +128,8 @@ export default class Signup extends Component {
                     name="password"
                     className="form-control input"
                     placeholder="Create Password"
+                    onChange={this.handleChange}
+
                      />
                 </div>
               </div>
